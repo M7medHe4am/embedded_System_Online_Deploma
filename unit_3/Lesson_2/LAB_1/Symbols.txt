@@ -1,6 +1,28 @@
+
+startup.o:
+         U main
+00000000 T reset
+         U stack_top
+00000008 t stop
+
+uart.o:
+00000000 T Send_String
+
+app.o:
+00000000 T main
+         U Send_String
+00000000 D String_Buf
+00000000 R String_Buf2
+00000064 R String_Buf3
+000000c8 R String_Buf4
+
+learn-in-depth.elf:
 00010010 T main
 00010000 T reset
 00010028 T Send_String
-000110dc D stack_top
+00011208 D stack_top
 00010008 t stop
-00010078 D String_Buf
+000101a4 D String_Buf
+00010078 T String_Buf2
+000100dc T String_Buf3
+00010140 T String_Buf4

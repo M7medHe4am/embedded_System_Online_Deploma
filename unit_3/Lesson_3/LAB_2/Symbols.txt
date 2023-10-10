@@ -1,0 +1,43 @@
+
+startup.o:
+00000000 W _BUS_FAULT_handler
+00000000 W _HARD_FAULT_handler
+00000000 W _MM_handler
+00000000 W _NMI_handler
+0000000c T _reset_handler
+00000000 W _Usage_fault_handler
+00000000 T Default_handler
+         U E_Bss
+         U E_Data
+         U E_Text
+         U main
+         U S_Bss
+         U S_Data
+         U stack_top
+00000000 D vectors
+
+LED_TOGGLE.o:
+00000000 R const_var
+00000000 D g_var
+00000000 T main
+00000001 C ug_var
+
+LED_CORTEX_M3.elf:
+080000d8 W _BUS_FAULT_handler
+080000d8 W _HARD_FAULT_handler
+080000d8 W _MM_handler
+080000d8 W _NMI_handler
+080000e4 T _reset_handler
+080000d8 W _Usage_fault_handler
+08000194 R const_var
+080000d8 T Default_handler
+20000004 B E_Bss
+20000004 D E_Data
+08000194 T E_Text
+20000000 D g_var
+0800001c T main
+20000004 B S_Bss
+20000000 D S_Data
+20001004 B stack_top
+20001004 B ug_var
+08000000 T vectors
