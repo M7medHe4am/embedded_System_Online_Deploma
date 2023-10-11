@@ -1,0 +1,109 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+flash            0x00000000         0x20000000         xr
+sram             0x20000000         0x20000000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+
+.text           0x00000000      0x19c
+ *(.vectors*)
+ .vectors       0x00000000       0x18 startup.o
+                0x00000000                g_p_fn_vectors
+ *(.text*)
+ .text          0x00000018       0xc8 LED_TOGGLE.o
+                0x00000018                main
+ .text          0x000000e0       0xbc startup.o
+                0x000000e0                _Usage_fault_handler
+                0x000000e0                Default_handler
+                0x000000e0                _MM_handler
+                0x000000e0                _BUS_FAULT_handler
+                0x000000e0                _NMI_handler
+                0x000000e0                _HARD_FAULT_handler
+                0x000000ec                _reset_handler
+                0x0000019c                E_Text = .
+
+.glue_7         0x0000019c        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x0000019c        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x0000019c        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x0000019c        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x0000019c        0x0
+ .iplt          0x00000000        0x0 LED_TOGGLE.o
+
+.rel.dyn        0x0000019c        0x0
+ .rel.iplt      0x00000000        0x0 LED_TOGGLE.o
+
+.data           0x20000000        0x0 load address 0x0000019c
+                0x20000000                S_Data = .
+ *(.data)
+ .data          0x20000000        0x0 LED_TOGGLE.o
+ .data          0x20000000        0x0 startup.o
+                0x20000000                E_Data = .
+
+.igot.plt       0x20000000        0x0 load address 0x0000019c
+ .igot.plt      0x00000000        0x0 LED_TOGGLE.o
+
+.bss            0x20000000      0x400 load address 0x0000019c
+                0x20000000                S_Bss = .
+ *(.bss*)
+ .bss           0x20000000        0x0 LED_TOGGLE.o
+ .bss           0x20000000      0x400 startup.o
+                0x20000400                E_Bss = .
+LOAD LED_TOGGLE.o
+LOAD startup.o
+OUTPUT(LED_CORTEX_M4.elf elf32-littlearm)
+
+.debug_info     0x00000000      0x24a
+ .debug_info    0x00000000       0xb0 LED_TOGGLE.o
+ .debug_info    0x000000b0      0x19a startup.o
+
+.debug_abbrev   0x00000000      0x13e
+ .debug_abbrev  0x00000000       0x67 LED_TOGGLE.o
+ .debug_abbrev  0x00000067       0xd7 startup.o
+
+.debug_loc      0x00000000       0x9c
+ .debug_loc     0x00000000       0x38 LED_TOGGLE.o
+ .debug_loc     0x00000038       0x64 startup.o
+
+.debug_aranges  0x00000000       0x40
+ .debug_aranges
+                0x00000000       0x20 LED_TOGGLE.o
+ .debug_aranges
+                0x00000020       0x20 startup.o
+
+.debug_line     0x00000000      0x16b
+ .debug_line    0x00000000       0xb0 LED_TOGGLE.o
+ .debug_line    0x000000b0       0xbb startup.o
+
+.debug_str      0x00000000      0x147
+ .debug_str     0x00000000       0xb4 LED_TOGGLE.o
+                                 0xf1 (size before relaxing)
+ .debug_str     0x000000b4       0x93 startup.o
+                                0x15c (size before relaxing)
+
+.comment        0x00000000       0x11
+ .comment       0x00000000       0x11 LED_TOGGLE.o
+                                 0x12 (size before relaxing)
+ .comment       0x00000000       0x12 startup.o
+
+.ARM.attributes
+                0x00000000       0x33
+ .ARM.attributes
+                0x00000000       0x33 LED_TOGGLE.o
+ .ARM.attributes
+                0x00000033       0x33 startup.o
+
+.debug_frame    0x00000000       0x78
+ .debug_frame   0x00000000       0x2c LED_TOGGLE.o
+ .debug_frame   0x0000002c       0x4c startup.o

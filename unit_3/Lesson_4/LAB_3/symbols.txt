@@ -1,0 +1,37 @@
+
+startup.o:
+00000000 W _BUS_FAULT_handler
+00000000 W _HARD_FAULT_handler
+00000000 W _MM_handler
+00000000 W _NMI_handler
+0000000c T _reset_handler
+00000000 W _Usage_fault_handler
+00000000 T Default_handler
+         U E_Bss
+         U E_Data
+         U E_Text
+00000000 R g_p_fn_vectors
+         U main
+         U S_Bss
+         U S_Data
+00000000 b Stack_Top
+
+LED_TOGGLE.o:
+00000000 T main
+
+LED_CORTEX_M4.elf:
+000000e0 W _BUS_FAULT_handler
+000000e0 W _HARD_FAULT_handler
+000000e0 W _MM_handler
+000000e0 W _NMI_handler
+000000ec T _reset_handler
+000000e0 W _Usage_fault_handler
+000000e0 T Default_handler
+20000400 B E_Bss
+20000000 T E_Data
+0000019c T E_Text
+00000000 T g_p_fn_vectors
+00000018 T main
+20000000 B S_Bss
+20000000 T S_Data
+20000000 b Stack_Top
