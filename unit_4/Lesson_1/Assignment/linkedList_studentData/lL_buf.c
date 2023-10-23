@@ -22,12 +22,12 @@ void add_student()
 	{
 		PlastStudent=g_PfirstStudent;
 		while(PlastStudent->PnextStudent)
-			{
+		{
 			PlastStudent=PlastStudent->PnextStudent;
-			}
+		}
 
-	PnewStudent=(struct SStudent*)malloc(sizeof (struct SStudent));
-	PlastStudent->PnextStudent=PnewStudent;
+		PnewStudent=(struct SStudent*)malloc(sizeof (struct SStudent));
+		PlastStudent->PnextStudent=PnewStudent;
 	}
 	PnewStudent->PnextStudent=NULL;
 	DPRINTF("Enter ID:");
@@ -37,26 +37,26 @@ void add_student()
 	while(Pcheck)
 	{
 		if(Pcheck->data.id==atoi(temp))
-			{
+		{
 			ref++;
 			break;
-			}
+		}
 		else
-			{
+		{
 			Pcheck=Pcheck->PnextStudent;
-			}
+		}
 	}
 
 	if(ref==0)
-	 {
-	PnewStudent->data.id=atoi(temp);
-	DPRINTF("Enter Name:");
-	gets(PnewStudent->data.name);
-	DPRINTF("Enter height:");
-	gets(temp);
-	PnewStudent->data.height=atof(temp);
+	{
+		PnewStudent->data.id=atoi(temp);
+		DPRINTF("Enter Name:");
+		gets(PnewStudent->data.name);
+		DPRINTF("Enter height:");
+		gets(temp);
+		PnewStudent->data.height=atof(temp);
 
-	printf("ID: %d is added successfully\n",PnewStudent->data.id);
+		printf("ID: %d is added successfully\n",PnewStudent->data.id);
 	}
 	else
 	{
@@ -67,9 +67,8 @@ void add_student()
 
 void  delete_student()
 {
-	struct SStudent* PpreviousStudent=NULL;
-	struct SStudent* PselectedStudent;
-	PselectedStudent=g_PfirstStudent;
+
+
 	unsigned int selectedId;
 	char temp[40];
 	int ref=0;
@@ -78,6 +77,8 @@ void  delete_student()
 	selectedId=atoi(temp);
 	if(g_PfirstStudent)
 	{
+		struct SStudent* PpreviousStudent=NULL;
+		struct SStudent* PselectedStudent=g_PfirstStudent;
 		while (PselectedStudent)
 		{
 			if(PselectedStudent->data.id==selectedId)
@@ -104,9 +105,9 @@ void  delete_student()
 		}
 		if(ref==0)
 		{
-		DPRINTF("\n=============\n");
-		DPRINTF("ID not found");
-		DPRINTF("\n=============\n");
+			DPRINTF("\n=============\n");
+			DPRINTF("ID not found");
+			DPRINTF("\n=============\n");
 		}
 	}
 	else
@@ -120,12 +121,12 @@ void  delete_student()
 void view_students()
 {
 	struct SStudent* pcurrentStudent=g_PfirstStudent;
-	int count =1;
+	int count =0;
 	if(pcurrentStudent)
 	{
 		while (pcurrentStudent)
 		{
-			DPRINTF("Record number:%d\n",count);
+			DPRINTF("Index number:%d\n",count);
 			DPRINTF("ID = %d\n",pcurrentStudent->data.id);
 			DPRINTF("Name = %s\n",pcurrentStudent->data.name);
 			DPRINTF("Height = %.2f\n",pcurrentStudent->data.height);
@@ -170,8 +171,138 @@ void deleteAll_students()
 
 }
 
+//Features functions
+void get_studentid()
+{
+	char temp[5];
+	struct SStudent* pselectedStudent=g_PfirstStudent;
+	DPRINTF("Enter ID: ");
+	gets(temp);
+	int count=0,ref=0;
+
+	while(pselectedStudent)
+	{
+		if(pselectedStudent->data.id==atoi(temp))
+		{
+			ref++;
+			DPRINTF("Index number:%d\n",count);
+			DPRINTF("ID = %d\n",pselectedStudent->data.id);
+			DPRINTF("Name = %s\n",pselectedStudent->data.name);
+			DPRINTF("Height = %.2f\n",pselectedStudent->data.height);
+			DPRINTF("================================\n");
+
+		}
+
+		count++;
+		pselectedStudent=pselectedStudent->PnextStudent;
+
+	}
+	if(ref==0)
+		DPRINTF("ID DOESN'T EXIST!!!\n");
+
+}
 
 
+void no_ofStudents(int* count)
+{
+	struct SStudent* pselectedStudent=g_PfirstStudent;
+	*count=0;
 
+	if(pselectedStudent)
+	{
+		while(pselectedStudent)
+		{
+			if(pselectedStudent->PnextStudent)
+				(*count)++;
+			else
+				(*count)++;
+			pselectedStudent=pselectedStudent->PnextStudent;
+		}
+		printf("No. of students = %d\n",*count);
+	}
+	else
+		DPRINTF("The List is Empty\n");
+
+}
+
+void get_reverseIndex()
+{
+	int count;
+	char index[5];
+	no_ofStudents(&count);
+	DPRINTF("Enter an index: ");
+	gets(index);
+	int x=atoi(index);
+	if(x<count)
+	{
+		int newCount=(count-1)-atoi(index);
+		count=0;
+		struct SStudent* pselectedStudent=g_PfirstStudent;
+		while (pselectedStudent)
+		{
+			if(count==newCount)
+			{
+				DPRINTF("ID = %d\n",pselectedStudent->data.id);
+				DPRINTF("Name = %s\n",pselectedStudent->data.name);
+				DPRINTF("Height = %.2f\n",pselectedStudent->data.height);
+				DPRINTF("================================\n");
+				break;
+			}
+			count++;
+			pselectedStudent=pselectedStudent->PnextStudent;
+		}
+
+	}
+	else
+		DPRINTF("INDEX doesn't exist!!!\n");
+}
+
+void findMiddle()
+{
+	int count;
+	no_ofStudents(&count);
+	if(count!=0)
+	{
+		int newCount=(count)/2;
+		count =0;
+		struct SStudent* pselectedStudent=g_PfirstStudent;
+		while (pselectedStudent)
+		{
+			if(count==newCount)
+			{
+				DPRINTF("Index number:%d\n",count);
+				DPRINTF("ID = %d\n",pselectedStudent->data.id);
+				DPRINTF("Name = %s\n",pselectedStudent->data.name);
+				DPRINTF("Height = %.2f\n",pselectedStudent->data.height);
+				DPRINTF("================================\n");
+				break;
+			}
+			count++;
+			pselectedStudent=pselectedStudent->PnextStudent;
+		}
+
+	}
+	else
+		DPRINTF("List is empty!!!\n");
+
+}
+
+void reverse()
+{
+	struct SStudent* pprevious=NULL;
+	struct SStudent* pnext=NULL;
+	struct SStudent* pcurrent=g_PfirstStudent;
+
+	while (pcurrent)
+	{
+		pnext=pcurrent->PnextStudent;
+
+		pcurrent->PnextStudent=pprevious;
+		pprevious=pcurrent;
+		pcurrent=pnext;
+	}
+	g_PfirstStudent=pprevious;
+	DPRINTF("Reversed Successfully\n");
+}
 
 

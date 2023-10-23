@@ -43,5 +43,10 @@ void add_student();
 void  delete_student();
 void view_students();
 void deleteAll_students();
+void get_studentid();
+void no_ofStudents(int* count);
+void get_reverseIndex();
+void findMiddle();
+void reverse();
 
 #endif /* LL_BUF_H_ */
