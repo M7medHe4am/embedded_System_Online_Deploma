@@ -89,7 +89,7 @@ void  delete_student()
 				}
 				else
 				{
-					g_PfirstStudent->PnextStudent=PselectedStudent->PnextStudent;
+					g_PfirstStudent=PselectedStudent->PnextStudent;
 				}
 				free(PselectedStudent);
 				DPRINTF("\n==========================\n");
