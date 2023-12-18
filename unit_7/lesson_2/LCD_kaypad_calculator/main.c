@@ -6,7 +6,8 @@
  */
 
 #include "LCD_driver/lcd.h"
-
+#include "keypad_driver/keypad.h"
+#include "calculator/calc.h"
 void app_init()
 {
 	s_LCD_Config_t LCD_config;
@@ -14,29 +15,41 @@ void app_init()
 	LCD_config.e_EntryMode	= NOSHIFT_INCREMENT;
 	LCD_config.e_FuncSet	= EIGHT_BIT_MODE_2LINE_10DOTS;
 	LCD_init(&LCD_config);
-	
+	KEYPAD_init();
 }
-
 
 
 
 int main(void)
 {
-	uint8_t key_pressed;
-	Keypad_init();
+	uint8_t key_pressed ;
 	app_init();
+	s_num_t var;
+	s_parameter_t parameter;
+	calc_reset_parameters(&parameter);
 	while (1)
 	{
-		key_pressed = Keypad_getkey();
-		switch(key_pressed){
-			case 'A':
+	key_pressed = KEYPAD_read_button();
+	switch(key_pressed)
+		{
+		case 'A' :
+		//DO nothing 
 			break;
-			case '?':
+		case 'C':
 			LCD_clear_screen();
+			calc_reset_parameters(&parameter);
 			break;
-			default:
+		default:
+		{
 			LCD_send_char(key_pressed);
+			if (calc_key_pressed_check(&var , key_pressed ,&parameter))
+			{
+				LCD_send_string(var.string);
+			}
 			break;
+		}
+			
+	
 		}
 	}
 
