@@ -3,9 +3,9 @@
  *
  * Created: 12/17/2023 11:08:25 PM
  *  Author: m7med
- */ 
+ */
 
-
+/*
 #ifndef CALC_H_
 #define CALC_H_
 //========================================INCLUDES=========================================
@@ -22,12 +22,12 @@
 
 //===============================TYPEDEFINED STRUCTURES=====================================
 
-typedef struct  
+typedef struct
 {
 	char  firstNumber[10];
 	char  secondNumber[10];
 	char op;
-	long  result;
+	long result;
 	char string[50];
 }s_num_t;
 

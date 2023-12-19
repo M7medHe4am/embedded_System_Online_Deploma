@@ -50,7 +50,7 @@ void LCD_init(s_LCD_Config_t* LCD_CONFIG)
 	 LCD_entry_mode_set(LCD_CONFIG->e_EntryMode);
 	
 	 LCD_clear_screen();
-	  LCD_return_home(); //?? return home ??? ????? ??? ?? clear 
+	  LCD_return_home(); 
 }
 
 void LCD_clear_screen(void)

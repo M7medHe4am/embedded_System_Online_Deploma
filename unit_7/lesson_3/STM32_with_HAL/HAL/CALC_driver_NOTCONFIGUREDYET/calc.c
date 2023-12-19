@@ -3,16 +3,15 @@
  *
  * Created: 12/17/2023 11:08:12 PM
  *  Author: m7med
- */ 
-#include "calc.h"
+ */
+/*#include "calc.h"
 
 
-//========================================FUNCTIONS========================================
 
 
 void calc_store_firstnumber(s_num_t* var, uint8_t firstNumber,uint8_t i)
 {
-		
+
 	var->firstNumber[i] = firstNumber;
 }
 
@@ -27,19 +26,19 @@ void calc_store_secondnumber(s_num_t* var,uint8_t secondNumber ,uint8_t j)
 
 void calc_store_operator(s_num_t* var , uint8_t operator)
 {
-	
-	var->op = operator ;	
+
+	var->op = operator ;
 }
 
 
 
 void calc_result(s_num_t *var)
 {
-	long  num1 =0  , num2 = 0;
-	//const char 
+	long   num1 =0  , num2 = 0;
+	//const char
 	num1 = atoi(var->firstNumber);
 	num2 = atoi(var->secondNumber);
-	
+
 	switch(var->op)
 	{
 		case '*':
@@ -51,12 +50,12 @@ void calc_result(s_num_t *var)
 		case '+' :
 			var->result = num1 +  num2;
 			break;
-		default: 
+		default:
 			var->result = num1 -  num2;
 			break ;
 	}
 	sprintf(var->string,"%ld",var->result);
-	
+
 }
 
 
@@ -74,7 +73,7 @@ uint8_t calc_key_pressed_check(s_num_t *var , uint8_t key_pressed,s_parameter_t*
 	else if (  (key_pressed == '*') || (key_pressed == '/')|| (key_pressed == '+')|| (key_pressed == '-'))
 	{
 		calc_store_operator(var,key_pressed);
-		(parameter->counter)++;	
+		(parameter->counter)++;
 	}
 	else
 	{
@@ -101,4 +100,8 @@ void calc_reset_parameters(s_parameter_t* parameter)
 	parameter->i =0;
 	parameter->j =0;
 }
-//=========================================================================================
+
+
+
+
+*/
