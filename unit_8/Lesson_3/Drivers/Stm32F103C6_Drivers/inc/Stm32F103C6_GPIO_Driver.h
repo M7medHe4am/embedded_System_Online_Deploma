@@ -40,23 +40,25 @@ typedef struct{
 //Macros Configuration References
 //-----------------------------
 //@ref GPIO_PINS_define
-#define GPIO_PIN_0	  (0)
-#define GPIO_PIN_1	  (1)
-#define GPIO_PIN_2	  (2)
-#define GPIO_PIN_3	  (3)
-#define GPIO_PIN_4	  (4)
-#define GPIO_PIN_5	  (5)
-#define GPIO_PIN_6	  (6)
-#define GPIO_PIN_7	  (7)
-#define GPIO_PIN_8	  (8)
-#define GPIO_PIN_9	  (9)
-#define GPIO_PIN_10	  (10)
-#define GPIO_PIN_11	  (11)
-#define GPIO_PIN_12	  (12)
-#define GPIO_PIN_13	  (13)
-#define GPIO_PIN_14	  (14)
-#define GPIO_PIN_15	  (15)
-#define GPIO_PIN_ALL  (uint16_t)0xFFFF
+#define GPIO_PIN_0                 ((uint16_t)0x0001)  /* Pin 0 selected    */
+#define GPIO_PIN_1                 ((uint16_t)0x0002)  /* Pin 1 selected    */
+#define GPIO_PIN_2                 ((uint16_t)0x0004)  /* Pin 2 selected    */
+#define GPIO_PIN_3                 ((uint16_t)0x0008)  /* Pin 3 selected    */
+#define GPIO_PIN_4                 ((uint16_t)0x0010)  /* Pin 4 selected    */
+#define GPIO_PIN_5                 ((uint16_t)0x0020)  /* Pin 5 selected    */
+#define GPIO_PIN_6                 ((uint16_t)0x0040)  /* Pin 6 selected    */
+#define GPIO_PIN_7                 ((uint16_t)0x0080)  /* Pin 7 selected    */
+#define GPIO_PIN_8                 ((uint16_t)0x0100)  /* Pin 8 selected    */
+#define GPIO_PIN_9                 ((uint16_t)0x0200)  /* Pin 9 selected    */
+#define GPIO_PIN_10                ((uint16_t)0x0400)  /* Pin 10 selected   */
+#define GPIO_PIN_11                ((uint16_t)0x0800)  /* Pin 11 selected   */
+#define GPIO_PIN_12                ((uint16_t)0x1000)  /* Pin 12 selected   */
+#define GPIO_PIN_13                ((uint16_t)0x2000)  /* Pin 13 selected   */
+#define GPIO_PIN_14                ((uint16_t)0x4000)  /* Pin 14 selected   */
+#define GPIO_PIN_15                ((uint16_t)0x8000)  /* Pin 15 selected   */
+#define GPIO_PIN_All               ((uint16_t)0xFFFF)  /* All pins selected */
+
+#define GPIO_PIN_MASK              0x0000FFFFu /* PIN mask for assert test */
 
 //@ref GPIO_MODE_define
 /*In input mode (MODE[1:0]=00):
@@ -72,18 +74,18 @@ In output mode (MODE[1:0] > 00):
 8: Alternate function input
 */
 //analoge mode
-#define GPIO_MODE_Analog   		(0)
+#define GPIO_MODE_Analog   		0x00000000u
 //input modes
-#define GPIO_MODE_FLO_IN		(1)
-#define GPIO_MODE_IN_PU			(2)
-#define GPIO_MODE_IN_PD			(3)
+#define GPIO_MODE_FLO_IN		0x00000001u
+#define GPIO_MODE_IN_PU			0x00000002u
+#define GPIO_MODE_IN_PD			0x00000003u
 //output modes
-#define GPIO_MODE_OUT_PP		(4)
-#define GPIO_MODE_OUT_OD		(5)
-#define GPIO_MODE_AF_OUT_PP		(6)
-#define GPIO_MODE_AF_OUT_OD		(7)
+#define GPIO_MODE_OUT_PP		0x00000004u
+#define GPIO_MODE_OUT_OD		0x00000005u
+#define GPIO_MODE_AF_OUT_PP		0x00000006u
+#define GPIO_MODE_AF_OUT_OD		0x00000007u
 //AF_INPUT
-#define GPIO_MODE_AF_IN 		(8)
+#define GPIO_MODE_AF_IN 		0x00000008u
 
 
 //@ref GPIO_SPEED_define
@@ -92,12 +94,20 @@ In output mode (MODE[1:0] > 00):
 //2: Output mode, max speed 2 MHz.
 //3: Output mode, max speed 50 MHz.
 
-#define GPIO_SPEED_10M	0b01
-#define GPIO_SPEED_2M	0b10
-#define GPIO_SPEED_50M	0b11
-//@ref GPIO_RETURN_LOCK
-#define GPIO_RETURN_LOCK_Enabled			(1)
-#define GPIO_RETURN_LOCK_ERROR				(0)
+#define GPIO_SPEED_10M	0x00000001u
+#define GPIO_SPEED_2M	0x00000002u
+#define GPIO_SPEED_50M	0x00000003u
+/*	@ref GPIO_PIN_OUTPUT_defines
+ */
+#define GPIO_PIN_SET                 1
+#define GPIO_PIN_RESET               0
+
+
+/*	@ref GPIO_Return_defines
+ */
+#define OK 						     1
+#define ERROR 						 0
+
 
 
 
