@@ -112,7 +112,7 @@ uint8_t MCAL_GPIO_ReadPIN(GPIO_TypeDef_t* GPIOx , uint8_t PinNumber);
 uint16_t MCAL_GPIO_ReadPORT(GPIO_TypeDef_t* GPIOx);
 void MCAL_GPIO_WritePIN(GPIO_TypeDef_t* GPIOx ,uint8_t PinNumber , uint8_t value);
 void MCAL_GPIO_WritePORT(GPIO_TypeDef_t* GPIOx , uint16_t value);
-
+void MCAL_GPIO_TogglePIN(GPIO_TypeDef_t* GPIOx , uint8_t PinNumber);
 /*--------------------------------------------------*/
 
 #endif /* GPIO_INCS_STM32F103X6_GPIO_H_ */

@@ -135,3 +135,18 @@ void MCAL_GPIO_WritePORT(GPIO_TypeDef_t* GPIOx , uint16_t value)
 
 
 
+/**================================================================
+ * @Fn				-MCAL_GPIO_TogglePIN
+ * @brief 			-Toggles specific PIN
+ * @param [in]		-GPIOx: where x can be (A...E depending on the device used) to select the GPIO peripheral
+ * @param [in]		-pinNumber: Set the pin number according to @ref GPIO_PINS_Define
+ * @retval 			-none
+ * Note				-none
+ */
+void MCAL_GPIO_TogglePIN(GPIO_TypeDef_t* GPIOx , uint8_t PinNumber)
+{
+	PinNumber /= 4;
+
+	GPIOx->ODR ^= 1<<PinNumber ;
+
+}
