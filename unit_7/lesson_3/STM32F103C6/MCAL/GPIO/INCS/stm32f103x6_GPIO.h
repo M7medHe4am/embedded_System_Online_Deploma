@@ -28,6 +28,9 @@ typedef struct
 	volatile uint8_t GPIO_Speed ;			//specifies the speed of the selected pins
 											//This parameter must be set based on @ref GPIO_SPEED_define
 
+	volatile uint8_t GPIO_Direction;		//specifies the direction of the selected pins (INPUT / OUTPUT )
+											//This parameter must be set based on @ref GPIO_Direction_define
+
 
 }GPIO_PinConfig_t;
 
@@ -98,7 +101,9 @@ In output mode (MODE[1:0] > 00):
 
 
 
-
+//@ref GPIO_Direction_define
+#define INPUT 0
+#define OUTPUT 1
 
 
 
@@ -113,6 +118,7 @@ uint16_t MCAL_GPIO_ReadPORT(GPIO_TypeDef_t* GPIOx);
 void MCAL_GPIO_WritePIN(GPIO_TypeDef_t* GPIOx ,uint8_t PinNumber , uint8_t value);
 void MCAL_GPIO_WritePORT(GPIO_TypeDef_t* GPIOx , uint16_t value);
 void MCAL_GPIO_TogglePIN(GPIO_TypeDef_t* GPIOx , uint8_t PinNumber);
+
 /*--------------------------------------------------*/
 
 #endif /* GPIO_INCS_STM32F103X6_GPIO_H_ */

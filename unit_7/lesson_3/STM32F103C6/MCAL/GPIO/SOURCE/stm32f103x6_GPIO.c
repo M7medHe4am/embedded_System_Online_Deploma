@@ -42,18 +42,21 @@ void MCAL_GPIO_init(GPIO_TypeDef_t* GPIOx ,GPIO_PinConfig_t* PinConfig)
 	//SETTING MODE (IN/OUT)
 	if(PinConfig->GPIO_Mode == GPIO_MODE_IN_PU)
 	{
-		GPIOx->ODR |= 1 << pinNumber ;
+		GPIOx->ODR |= 1 << (pinNumber/4) ;
 	}
 	else if(PinConfig->GPIO_Mode == GPIO_MODE_IN_PD)
 	{
-		GPIOx->ODR &= ~ (1 << pinNumber) ;
+		GPIOx->ODR &= ~ (pinNumber/4) ;
 	}
 
 	*CNFG_Reg |= PinConfig->GPIO_Mode << pinNumber ;
 
 	//Setting Speed if output
+	if (PinConfig->GPIO_Direction == OUTPUT)
+	{
+		*CNFG_Reg |=PinConfig->GPIO_Speed << pinNumber ;
+	}
 
-	*CNFG_Reg |=PinConfig->GPIO_Speed << pinNumber ;
 
 
 }
@@ -132,9 +135,6 @@ void MCAL_GPIO_WritePORT(GPIO_TypeDef_t* GPIOx , uint16_t value)
 	GPIOx->ODR = (uint32_t)value ;
 }
 
-
-
-
 /**================================================================
  * @Fn				-MCAL_GPIO_TogglePIN
  * @brief 			-Toggles specific PIN
@@ -150,3 +150,4 @@ void MCAL_GPIO_TogglePIN(GPIO_TypeDef_t* GPIOx , uint8_t PinNumber)
 	GPIOx->ODR ^= 1<<PinNumber ;
 
 }
+

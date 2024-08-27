@@ -25,7 +25,7 @@
 
 /*---------------------------------------------------------------------*/
 /*------------------Base addresses for BUS Peripherals-----------------*/
-#define NVIC_BASE   0xE000EF00UL
+#define NVIC_BASE   0xE000E100UL
 
 #define RCC_BASE    0x40021000UL
 
@@ -57,7 +57,6 @@
 
 /*---------------------------------------------------------------------*/
 /*------------------Peripheral register-----------------*/
-
 
 //-*-*-*-*-*-*-*-*-*-*-*
 //Peripheral:RCC
@@ -106,8 +105,47 @@ typedef struct{
 }AFIO_TypeDef_t;
 
 
+
+//-*-*-*-*-*-*-*-*-*-*-*-
+//Peripheral:EXTI
+//-*-*-*-*-*-*-*-*-*-*-*
+typedef struct
+{
+	volatile uint32_t IMR ;
+	volatile uint32_t EMR ;
+	volatile uint32_t RTSR ;
+	volatile uint32_t FTSR ;
+	volatile uint32_t SWIER ;
+	volatile uint32_t PR ;
+}EXTI_TypeDef_t;
+
+
+
+
+
+
+
+
+
+
+
 /*------------------------------------------------------*/
 /*------------------Peripheral Instants-----------------*/
+//-*-*-*-*-*-*-*-*-*-*-*
+//Peripheral:NVIC
+//-*-*-*-*-*-*-*-*-*-*-*
+#define NVIC_ISER0 *((volatile uint32_t*)(NVIC_BASE+0x000))
+
+
+#define NVIC_ISER1 *((volatile uint32_t*)(NVIC_BASE+0x004))
+#define NVIC_ISER2 *((volatile uint32_t*)(NVIC_BASE+0x008))
+
+#define NVIC_ICER0 *((volatile uint32_t*)(NVIC_BASE+0x080))
+#define NVIC_ICER1 *((volatile uint32_t*)(NVIC_BASE+0x084))
+#define NVIC_ICER2 *((volatile uint32_t*)(NVIC_BASE+0x088))
+
+
+
 //-*-*-*-*-*-*-*-*-*-*-*
 //Peripheral:RCC
 //-*-*-*-*-*-*-*-*-*-*-*
@@ -127,37 +165,36 @@ typedef struct{
 //-*-*-*-*-*-*-*-*-*-*-*-
 //Peripheral Instants:AFIO
 //-*-*-*-*-*-*-*-*-*-*-*
-#define AFIO ((AFIO_TypeDef*)AFIO_BASE)
+#define AFIO ((AFIO_TypeDef_t*)AFIO_BASE)
 
 
 
 //-*-*-*-*-*-*-*-*-*-*-*-
 //Peripheral Instants:EXTI
 //-*-*-*-*-*-*-*-*-*-*-*
-#define EXTI ((EXTI_TypeDef*)EXTI_BASE)
-
+#define EXTI ((EXTI_TypeDef_t*)EXTI_BASE)
 
 
 //-*-*-*-*-*-*-*-*-*-*-*-
 //Peripheral Instants:USART
 //-*-*-*-*-*-*-*-*-*-*-*
-#define USART1 ((USART_TypeDef*)USART1_BASE)
-#define USART2 ((USART_TypeDef*)USART2_BASE)
-#define USART3 ((USART_TypeDef*)USART3_BASE)
+#define USART1 ((USART_TypeDef_t*)USART1_BASE)
+#define USART2 ((USART_TypeDef_t*)USART2_BASE)
+#define USART3 ((USART_TypeDef_t*)USART3_BASE)
 
 
 //-*-*-*-*-*-*-*-*-*-*-*-
 //Peripheral Instants:SPI
 //-*-*-*-*-*-*-*-*-*-*-*
-#define SPI1 ((SPI_TypeDef*)SPI1_BASE)
-#define SPI2 ((SPI_TypeDef*)SPI2_BASE)
+#define SPI1 ((SPI_TypeDef_t*)SPI1_BASE)
+#define SPI2 ((SPI_TypeDef_t*)SPI2_BASE)
 
 
 //-*-*-*-*-*-*-*-*-*-*-*-
 //Peripheral Instants:I2C
 //-*-*-*-*-*-*-*-*-*-*-*
-#define I2C1 ((I2C_TypeDef*)I2C1_BASE)
-#define I2C2 ((I2C_TypeDef*)I2C2_BASE)
+#define I2C1 ((I2C_TypeDef_t*)I2C1_BASE)
+#define I2C2 ((I2C_TypeDef_t*)I2C2_BASE)
 
 
 /*------------------------------------------------------*/
@@ -181,14 +218,26 @@ typedef struct{
 
 
 
+//-*-*-*-*-*-*-*-*-*-*-*-
+//Peripheral: AFIO
+//-*-*-*-*-*-*-*-*-*-*-*
+
+#define AFIO_CLCK_EN() (RCC->APB2ENR |=1<<0)
 
 
+//-*-*-*-*-*-*-*-*-*-*-*
+
+#define AFIO_CLCK_RESET() (RCC->APB2RSTR|=1<<0)
 
 
 
 //-*-*-*-*-*-*-*-*-*-*-*-
-//Peripheral Instants:AFIO
+//Peripheral: EXTI
 //-*-*-*-*-*-*-*-*-*-*-*
+
+//NO CLCK CONTROL >> ENABLED BY DEFAULT
+
+
 
 
 
